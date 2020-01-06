@@ -12,27 +12,35 @@ from rango.models import Category, Page
 def populate():
     python_pages = [
         {'title': 'Official Python Tutorial',
-         'url': 'https://docs.python.org/3/tutorial/'},
+         'url': 'https://docs.python.org/3/tutorial/',
+         'views': 128},
         {'title': 'How to Think like a Computer Scientist',
-         'url': 'https://greenteapress.com/wp/think-python/'},
+         'url': 'https://greenteapress.com/wp/think-python/',
+         'views': 64},
         {'title': 'Learn Python in 10 Minutes',
-         'url': 'https://www.stavros.io/tutorials/python/'},
+         'url': 'https://www.stavros.io/tutorials/python/',
+         'views': 32},
     ]
 
 
     django_pages = [
         {"title": "Official Django Tutorial",
-         "url": "https://docs.djangoproject.com/en/1.10/intro/tutorial01//"},
+         "url": "https://docs.djangoproject.com/en/1.10/intro/tutorial01//",
+         'views': 16},
         {"title": "Django Rocks",
-         "url": "http://www.djangorocks.com/"},
+         "url": "http://www.djangorocks.com/",
+         'views': 8},
         {"title": "How to Tango with Django",
-         "url": "http://www.tangowithdjango.com/"}]
+         "url": "http://www.tangowithdjango.com/",
+         'views': 4}]
 
     other_pages = [
         {"title": "Bottle",
-         "url": "http://bottlepy.org/docs/dev/"},
+         "url": "http://bottlepy.org/docs/dev/",
+         'views': 2},
         {"title": "Flask",
-         "url": "http://flask.pocoo.org"}]
+         "url": "http://flask.pocoo.org",
+         'views': 1}]
 
     categories = {
         'Python': {'pages': python_pages,
@@ -49,7 +57,7 @@ def populate():
     for category, data in categories.items():
         c = add_cat(category, data['views'], data['likes'])
         for p in data['pages']:
-            add_page(c, p['title'], p['url'])
+            add_page(c, p['title'], p['url'], p['views'])
 
     for c in Category.objects.all():
         for p in Page.objects.filter(category=c):
